@@ -2,9 +2,9 @@ import mysql.connector
 from mysql.connector import Error
 
 DB_CONFIG = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': 'sivapriya80'
+    'host': 'mysql-bakes-bakes.l.aivencloud.com',
+    'user': 'avnadmin',
+    'password': 'AVNS_iHfL6s4unb2hW7CP6B2'
 }
 DB_NAME = 'bakes'
 
