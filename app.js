@@ -1,7 +1,7 @@
 // --- Handcrafted Bakes Frontend Application Logic ---
 
 const API_BASE = (window.location.protocol === 'file:' || !window.location.origin.includes('5000'))
-    ? 'http://127.0.0.1:5000/api'
+    ? 'https://handcrafted-bakes.onrender.com'
     : '/api';
 
 // --- State ---
