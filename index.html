@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handcrafted Bakes</title>
+    <!-- Google Fonts for a cozy, warm, and elegant feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Library for client-side PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+
+    <!-- Main Application Wrapper -->
+    <div id="app-layout">
+        
+        <!-- Left Sidebar Navigation (hidden on Landing Page) -->
+        <aside id="app-sidebar" class="sidebar hidden">
+            <div class="sidebar-header">
+                <!-- Rolling pin SVG icon -->
+                <svg class="logo-icon" viewBox="0 0 24 24" width="28" height="28">
+                    <path fill="currentColor" d="M19.5,8C18.7,8 18,8.7 18,9.5V11H6V9.5C6,8.7 5.3,8 4.5,8C3.7,8 3,8.7 3,9.5V11H1V13H3V14.5C3,15.3 3.7,16 4.5,16C5.3,16 6,15.3 6,14.5V13H18V14.5C18,15.3 18.7,16 19.5,16C20.3,16 21,15.3 21,14.5V13H23V11H21V9.5C21,8.7 20.3,8 19.5,8M16,13H8V11H16V13Z" />
+                </svg>
+                <span class="logo-text">Handcrafted Bakes</span>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" id="nav-ingredients" class="nav-item">
+                    <!-- Scale SVG icon -->
+                    <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                    </svg>
+                    <span>Main Ingredients</span>
+                </a>
+                
+                <a href="#" id="nav-recipes" class="nav-item">
+                    <!-- Book SVG icon -->
+                    <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M19 2H6c-1.2 0-2 .8-2 2v16c0 1.2.8 2 2 2h13c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 18H6V4h12v16zM8 6h8v2H8zm0 4h8v2H8zm0 4h8v2H8z"/>
+                    </svg>
+                    <span>Recipes</span>
+                </a>
+
+                <a href="#" id="nav-pricing" class="nav-item">
+                    <!-- Tag / price icon -->
+                    <svg class="nav-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <path fill="currentColor" d="M21.41 11.58l-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42zM13 20l-9-9V4h7l9 9zM6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5z"/>
+                    </svg>
+                    <span>Pricing Sheet</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <a href="#" id="nav-home" class="home-link">
+                    &larr; Back to Landing Page
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main id="app-main" class="main-content full-width">
+            
+            <!-- VIEW 1: LANDING PAGE -->
+            <section id="view-landing" class="view active">
+                <div class="landing-container">
+                    <header class="landing-header">
+                        <!-- Cake icon -->
+                        <div class="hero-icon-container">
+                            <svg class="hero-icon animate-float" viewBox="0 0 24 24" width="64" height="64">
+                                <path fill="currentColor" d="M12,2C11.5,2 11,2.5 11,3V6H13V3C13,2.5 12.5,2 12,2M8,6V8H16V6H8M4,9v3c0,2.8 2.2,5 5,5h6c2.8,0 5-2.2 5-5V9H4M9,11a1,1 0 1,1 -2,0 1,1 0 0,1 2,0m3,0a1,1 0 1,1 -2,0 1,1 0 0,1 2,0m3,0a1,1 0 1,1 -2,0 1,1 0 0,1 2,0M2,18v4h20v-4H2z" />
+                            </svg>
+                        </div>
+                        <h1 class="landing-title">Handcrafted Bakes</h1>
+                        <p class="landing-subtitle">Welcome to Handcrafted Bakes</p>
+                    </header>
+                    
+                    <div class="landing-cards-grid">
+                        <div class="landing-card" id="card-ingredients">
+                            <div class="card-icon-wrapper">
+                                <!-- Ingredients bowl / flour scale icon -->
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <path fill="currentColor" d="M12 3a9 9 0 0 0-9 9c0 4.1 2.8 7.6 6.6 8.7L11 18H9a1 1 0 0 1 0-2h3.5a1 1 0 0 1 .9.6l1.3 3A9 9 0 0 0 12 3zm0 2c1.9 0 3.7.7 5.1 1.9l-1.4 1.4A7 7 0 0 0 12 5v2a5 5 0 0 1 3.5 1.5l-1.4 1.4A3 3 0 0 0 12 9v11a7 7 0 0 1-7-7c0-3.9 3.1-7 7-7z"/>
+                                </svg>
+                            </div>
+                            <h3>Main Ingredients</h3>
+                            <p>Manage your raw baking inventory, track weights, costs, and unit prices dynamically.</p>
+                            <button class="btn btn-primary">Open Inventory</button>
+                        </div>
+                        
+                        <div class="landing-card" id="card-recipes">
+                            <div class="card-icon-wrapper">
+                                <!-- Baker Hat / Whisk icon -->
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <path fill="currentColor" d="M12,2C10.5,2 9.2,2.8 8.5,4C7.5,4 6.6,4.6 6.2,5.5C4.9,6 4,7.4 4,9C4,9.6 4.1,10.1 4.4,10.6C3.5,11.5 3,12.7 3,14C3,16.5 4.8,18.6 7.2,18.9C7.7,20.7 9.3,22 11.2,22h1.6c1.9,0 3.5-1.3 4-3.1c2.4-.3 4.2-2.4 4.2-4.9c0-1.3-.5-2.5-1.4-3.4c.3-.5.4-1 .4-1.6c0-1.6-.9-3-2.2-3.5C17.4,4.6 16.5,4 15.5,4C14.8,2.8 13.5,2 12,2m0,2c.8,0 1.5.5 1.8,1.2C13.5,5.1 13,5.5 12.6,6H11.4C11,5.5 10.5,5.1 10.2,5.2C10.5,4.5 11.2,4 12,4m-2.6,3.6H14.6c.3.4.6.9.8,1.4H8.6c.2-.5.5-1 .8-1.4M6,10H18c0 .5-.1 1-.3 1.4H6.3C6.1,11 6,10.5 6,10M5,14c0-.8.4-1.6 1-2h12c.6.4 1 1.2 1 2c0,1.3-1,2.4-2.3,2.5C16.2,16 15.6,15.5 15,15.2V14H9v1.2c-.6.3-1.2.8-1.7,1.3C6,16.4 5,15.3 5,14M9.2,20c-.7,0-1.2-.5-1.2-1.2v-.8H16v.8c0,.7-.5,1.2-1.2,1.2H9.2Z" />
+                                </svg>
+                            </div>
+                            <h3>Recipes</h3>
+                            <p>Build and catalog recipes, auto-calculate cost requirements per batch based on live inventory costs.</p>
+                            <button class="btn btn-primary">Open Recipe Book</button>
+                        </div>
+
+                        <div class="landing-card" id="card-pricing">
+                            <div class="card-icon-wrapper">
+                                <svg viewBox="0 0 24 24" width="48" height="48">
+                                    <path fill="currentColor" d="M21.41 11.58l-9-9A2 2 0 0 0 11 2H4a2 2 0 0 0-2 2v7a2 2 0 0 0 .59 1.42l9 9A2 2 0 0 0 13 22a2 2 0 0 0 1.41-.59l7-7A2 2 0 0 0 22 13a2 2 0 0 0-.59-1.42zM13 20l-9-9V4h7l9 9zM6.5 5A1.5 1.5 0 1 1 5 6.5 1.5 1.5 0 0 1 6.5 5z"/>
+                                </svg>
+                            </div>
+                            <h3>Pricing Sheet</h3>
+                            <p>View all recipe costs at a glance and set your selling rates for easy profit tracking.</p>
+                            <button class="btn btn-primary">Open Pricing Sheet</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 5: PRICING SHEET MODULE -->
+            <section id="view-pricing" class="view">
+                <div class="view-header">
+                    <h2>Pricing Sheet</h2>
+                    <p class="view-description">View total cost for each recipe and set your selling rate per batch.</p>
+                </div>
+                <div class="card table-card">
+                    <div class="card-header-flex">
+                        <h3 class="card-title">Recipe Cost &amp; Selling Rate</h3>
+                        <button id="btn-download-pricing-pdf" class="btn btn-primary btn-with-icon">
+                            <svg viewBox="0 0 24 24" width="18" height="18">
+                                <path fill="currentColor" d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z" />
+                            </svg>
+                            Download PDF
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="table-pricing" class="cozy-table">
+                            <thead>
+                                <tr>
+                                    <th>Recipe Name</th>
+                                    <th style="text-align:right;">Total Weight</th>
+                                    <th style="text-align:right;">Total Cost (₹)</th>
+                                    <th style="text-align:right;">Selling Rate (₹)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4" class="empty-message">Loading recipes...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 2: MAIN INGREDIENTS MODULE -->
+            <section id="view-ingredients" class="view">
+                <div class="view-header">
+                    <h2>Main Ingredients Inventory</h2>
+                    <p class="view-description">Keep track of your pantry stock. Add and modify raw material weights and costs.</p>
+                </div>
+                
+                <!-- Add Ingredient Form -->
+                <div class="card form-card">
+                    <h3 class="card-title">Add New Ingredient</h3>
+                    <form id="form-add-ingredient" class="cozy-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="ing-category">Category</label>
+                                <input type="text" id="ing-category" placeholder="e.g., Flour, Sugar, Dairy" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ing-item">Item Name</label>
+                                <input type="text" id="ing-item" placeholder="e.g., All Purpose Flour, Castor Sugar" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ing-weight">Weight (gm)</label>
+                                <input type="number" id="ing-weight" step="any" min="0.0001" placeholder="e.g., 1000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ing-amount">Amount (₹)</label>
+                                <input type="number" id="ing-amount" step="any" min="0.01" placeholder="e.g., 5.50" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-footer">
+                            <div class="calc-preview">
+                                <span class="calc-label">Calculated Unit Cost:</span>
+                                <span id="ing-calc-preview-val" class="calc-value">₹0.0000 / gm</span>
+                            </div>
+                            <button type="submit" class="btn btn-accent btn-with-icon">
+                                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                                Add Ingredient
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Ingredients Table Container -->
+                <div class="card table-card">
+                    <div class="card-header-flex">
+                        <h3 class="card-title">Inventory Items</h3>
+                        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                            <button id="btn-download-inventory-pdf" class="btn btn-primary btn-with-icon" style="padding: 10px 16px; font-size: 0.9rem;">
+                                <svg viewBox="0 0 24 24" width="18" height="18">
+                                    <path fill="currentColor" d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z" />
+                                </svg>
+                                Download PDF
+                            </button>
+                            <div class="search-bar">
+                                <input type="text" id="inventory-search" placeholder="Search inventory...">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="table-ingredients" class="cozy-table">
+                            <thead>
+                                <tr>
+                                    <th id="th-category" style="cursor: pointer; user-select: none;" title="Click to sort by category">Category <span id="sort-arrow"></span></th>
+                                    <th>Item</th>
+                                    <th>Weight (gm)</th>
+                                    <th>Amount</th>
+                                    <th>Weight/gm</th>
+                                    <th class="actions-header">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Loaded dynamically -->
+                                <tr>
+                                    <td colspan="6" class="empty-message">Loading inventory ingredients...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- VIEW 3: RECIPES MODULE (LIST VIEW) -->
+            <section id="view-recipes" class="view">
+                <div class="view-header-flex">
+                    <div>
+                        <h2>Recipes</h2>
+                        <p class="view-description">Your catalog of bakes. Create new formulations and view cost calculations.</p>
+                    </div>
+                    <button id="btn-trigger-create-recipe" class="btn btn-accent btn-with-icon">
+                        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                        Create New Recipe
+                    </button>
+                </div>
+                
+                <!-- Recipes Grid List -->
+                <div id="recipes-grid" class="recipes-grid">
+                    <!-- Cards loaded dynamically -->
+                </div>
+                
+                <div id="recipes-empty-state" class="empty-state card hidden">
+                    <svg viewBox="0 0 24 24" width="64" height="64" class="empty-icon">
+                        <path fill="currentColor" d="M19 2H6c-1.2 0-2 .8-2 2v16c0 1.2.8 2 2 2h13c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 18H6V4h12v16zM8 6h8v2H8zm0 4h8v2H8zm0 4h8v2H8z"/>
+                    </svg>
+                    <h3>No Recipes Yet</h3>
+                    <p>Get started by creating your first recipe formulation like "Chocolate Cake" or "Vanilla Sponge".</p>
+                    <button class="btn btn-primary" onclick="openCreateRecipeModal()">Create New Recipe</button>
+                </div>
+            </section>
+            
+            <!-- VIEW 4: RECIPE DETAIL MODULE -->
+            <section id="view-recipe-detail" class="view">
+                <div class="view-header-detail">
+                    <button id="btn-back-to-recipes" class="btn-back">&larr; Back to Recipes</button>
+                    <div class="title-row">
+                        <div class="recipe-title-group">
+                            <h2 id="recipe-detail-title">Chocolate Cake</h2>
+                            <button id="btn-edit-recipe-title" class="btn-icon-edit" title="Rename recipe">
+                                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M14.06 9.02l.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"/></svg>
+                            </button>
+                            <div id="recipe-rename-form" class="recipe-rename-form hidden">
+                                <input type="text" id="recipe-rename-input" class="rename-input" placeholder="New recipe name..." />
+                                <button id="btn-rename-save" class="btn btn-accent" style="padding: 8px 16px; font-size: 0.88rem;">Save</button>
+                                <button id="btn-rename-cancel" class="btn btn-ghost" style="padding: 8px 14px; font-size: 0.88rem;">Cancel</button>
+                            </div>
+                        </div>
+                        <div class="header-actions" style="display: flex; gap: 10px;">
+                            <button id="btn-download-pdf" class="btn btn-primary btn-with-icon">
+                                <svg viewBox="0 0 24 24" width="18" height="18">
+                                    <path fill="currentColor" d="M19 12v7H5v-7H3v7c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-7h-2zm-6 .67l2.59-2.58L17 11.5l-5 5-5-5 1.41-1.41L11 12.67V3h2v9.67z" />
+                                </svg>
+                                Download PDF
+                            </button>
+                            <button id="btn-delete-recipe" class="btn btn-danger-outline">Delete Recipe</button>
+                        </div>
+                    </div>
+                    <p class="recipe-meta">Created on: <span id="recipe-created-date">-</span></p>
+                </div>
+                
+                <!-- Add Recipe Item Form -->
+                <div class="card form-card">
+                    <h3 class="card-title">Add Recipe Ingredient</h3>
+                    <form id="form-add-recipe-item" class="cozy-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="recipe-item-category">Category</label>
+                                <select id="recipe-item-category" required>
+                                    <option value="" disabled selected>Select Category</option>
+                                    <!-- Populated dynamically -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="recipe-item-name">Item</label>
+                                <select id="recipe-item-name" required disabled>
+                                    <option value="" disabled selected>Select Item</option>
+                                    <!-- Populated dynamically -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="recipe-item-weight">Weight (gm)</label>
+                                <input type="number" id="recipe-item-weight" step="any" min="0.0001" placeholder="e.g., 250" required disabled>
+                            </div>
+                            <div class="form-group">
+                                <label for="recipe-item-amount">Amount (₹)</label>
+                                <input type="text" id="recipe-item-amount" placeholder="0.00" readonly>
+                            </div>
+                        </div>
+                        
+                        <div class="form-footer">
+                            <div class="calc-preview">
+                                <span class="calc-label">Inventory Unit Rate:</span>
+                                <span id="recipe-item-rate-preview" class="calc-value">₹0.0000 / gm</span>
+                            </div>
+                            <button type="submit" id="btn-save-recipe-item" class="btn btn-accent btn-with-icon" disabled>
+                                <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                                Add to Recipe
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Recipe Ingredients List Table -->
+                <div class="card table-card">
+                    <div class="card-header-flex">
+                        <h3 class="card-title">Recipe Ingredients</h3>
+                        <div class="badges-row">
+                            <div class="total-weight-badge">
+                                Total Weight: <span id="recipe-total-weight">0.00 gm</span>
+                            </div>
+                            <div class="total-cost-badge">
+                                Total Recipe Cost: <span id="recipe-total-cost">₹0.00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table id="table-recipe-items" class="cozy-table">
+                            <thead>
+                                <tr>
+                                    <th id="th-recipe-category" style="cursor: pointer; user-select: none;" title="Click to sort by category">Category <span id="recipe-sort-arrow"></span></th>
+                                    <th>Item</th>
+                                    <th>Weight (gm)</th>
+                                    <th>Amount</th>
+                                    <th class="actions-header">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Loaded dynamically -->
+                                <tr>
+                                    <td colspan="5" class="empty-message">No ingredients added to this recipe yet.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- MODAL: CREATE RECIPE -->
+    <div id="modal-create-recipe" class="modal">
+        <div class="modal-content animate-pop">
+            <div class="modal-header">
+                <h3>Create New Recipe</h3>
+                <span class="modal-close" id="btn-close-create-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="form-create-recipe" class="cozy-form">
+                    <div class="form-group">
+                        <label for="new-recipe-name">Recipe Name</label>
+                        <input type="text" id="new-recipe-name" placeholder="e.g., Vanilla Sponge, Chocolate Fudge Brownie" required>
+                        <span class="form-error-msg" id="create-recipe-error"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="btn-cancel-create-modal">Cancel</button>
+                        <button type="submit" class="btn btn-accent">Create Recipe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: EDIT INGREDIENT -->
+    <div id="modal-edit-ingredient" class="modal">
+        <div class="modal-content animate-pop">
+            <div class="modal-header">
+                <h3>Edit Ingredient</h3>
+                <span class="modal-close" id="btn-close-edit-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="form-edit-ingredient" class="cozy-form">
+                    <input type="hidden" id="edit-ing-id">
+                    <div class="form-group">
+                        <label for="edit-ing-category">Category</label>
+                        <input type="text" id="edit-ing-category" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-ing-item">Item Name</label>
+                        <input type="text" id="edit-ing-item" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-ing-weight">Weight (gm)</label>
+                        <input type="number" id="edit-ing-weight" step="any" min="0.0001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-ing-amount">Amount (₹)</label>
+                        <input type="number" id="edit-ing-amount" step="any" min="0.01" required>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="calc-preview">
+                            <span class="calc-label">Calculated Unit Cost:</span>
+                            <span id="edit-ing-calc-preview-val" class="calc-value">₹0.0000 / gm</span>
+                        </div>
+                        <button type="button" class="btn btn-secondary" id="btn-cancel-edit-modal">Cancel</button>
+                        <button type="submit" class="btn btn-accent">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: EDIT RECIPE ITEM -->
+    <div id="modal-edit-recipe-item" class="modal">
+        <div class="modal-content animate-pop">
+            <div class="modal-header">
+                <h3>Edit Recipe Ingredient Weight</h3>
+                <span class="modal-close" id="btn-close-edit-ri-modal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="form-edit-recipe-item" class="cozy-form">
+                    <input type="hidden" id="edit-ri-id">
+                    <div class="form-group">
+                        <label>Ingredient</label>
+                        <input type="text" id="edit-ri-display-name" readonly class="input-readonly">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-ri-weight">Weight (gm)</label>
+                        <input type="number" id="edit-ri-weight" step="any" min="0.0001" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Recalculated Amount (₹)</label>
+                        <input type="text" id="edit-ri-amount" readonly class="input-readonly">
+                    </div>
+                    <div class="modal-footer">
+                        <div class="calc-preview">
+                            <span class="calc-label">Unit Rate:</span>
+                            <span id="edit-ri-rate-preview" class="calc-value">₹0.0000 / gm</span>
+                        </div>
+                        <button type="button" class="btn btn-secondary" id="btn-cancel-edit-ri-modal">Cancel</button>
+                        <button type="submit" class="btn btn-accent">Save Weight</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Core App Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
