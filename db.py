@@ -5,6 +5,7 @@ DB_CONFIG = {
     'host': 'mysql-bakes-bakes.l.aivencloud.com',
     'user': 'avnadmin',
     'password': 'AVNS_iHfL6s4unb2hW7CP6B2'
+    'port': 24585
 }
 DB_NAME = 'bakes'
 
